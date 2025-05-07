@@ -1,13 +1,7 @@
-import requests
-from bs4 import BeautifulSoup
+# news_scraper.py
+from gnews import GNews
 
-def scrape_news_headlines(url):
-    headlines = []
-    resp = requests.get(url)
-    soup = BeautifulSoup(resp.text, 'html.parser')
-    
-    for item in soup.select('h3, h2'):
-        text = item.get_text(strip=True)
-        if text:
-            headlines.append(text)
-    return headlines
+def scrape_news(query, limit=10):
+    google_news = GNews(language='en', max_results=limit)
+    results = google_news.get_news(query)
+    return [item['title'] + ' ' + item['description'] for item in results]

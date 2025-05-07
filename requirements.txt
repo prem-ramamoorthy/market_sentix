@@ -1,4 +1,4 @@
-snscrape
-beautifulsoup4
+gnews
+tweepy
 requests
 scikit-learn
